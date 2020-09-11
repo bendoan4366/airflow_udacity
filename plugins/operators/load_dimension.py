@@ -1,6 +1,7 @@
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
+from helpers import SqlQueries
 
 class LoadDimensionOperator(BaseOperator):
 
@@ -18,7 +19,7 @@ class LoadDimensionOperator(BaseOperator):
         self.redshift_conn_id = redshift_conn_id
         self.table = table
         self.sql = sql
-        self.append_only = append_only
+        self.append_mode = append_mode
 
     def execute(self, context):
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
@@ -34,4 +35,3 @@ class LoadDimensionOperator(BaseOperator):
         
         
         
-

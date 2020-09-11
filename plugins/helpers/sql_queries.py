@@ -2,11 +2,11 @@ class SqlQueries:
     songplay_table_insert = (""" 
         INSERT INTO {} (
             start_time,
-            user_id,
+            userid,
             level,
-            song_id,
-            artist_id,
-            session_id,
+            songid,
+            artistid,
+            sessionid,
             location,
             user_agent ) 
         SELECT
@@ -30,7 +30,7 @@ class SqlQueries:
 
     user_table_insert = ("""
     INSERT INTO {} (
-        user_id,
+        userid,
         first_name,
         last_name,
         gender,
@@ -42,9 +42,9 @@ class SqlQueries:
 
     song_table_insert = ("""
     INSERT INTO {} (
-        song_id,
+        songid,
         title,
-        artist_id,
+        artistid,
         year,
         duration )
     SELECT distinct song_id, title, artist_id, year, duration
@@ -53,10 +53,10 @@ class SqlQueries:
 
     artist_table_insert = ("""
      INSERT INTO {} (
-        artist_id,
+        artistid,
         name,
         location,
-        latitude,
+        lattitude,
         longitude )
     SELECT distinct artist_id, artist_name, artist_location, artist_latitude, artist_longitude
     FROM staging_songs
